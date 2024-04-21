@@ -1,0 +1,13 @@
+version: "3"
+services:
+  emby:
+    image: emby/embyserver_arm64v8:latest
+    container_name: emby
+    volumes:
+      - /home/paulo/Documents/disco/pelis/completas:/peliculas
+    ports:
+      - 8200:8096
+    environment:
+      - UID=1000
+      - GID=1000
+    restart: unless-stopped
