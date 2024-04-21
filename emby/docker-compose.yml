@@ -4,7 +4,7 @@ services:
     image: emby/embyserver_arm64v8:latest
     container_name: emby
     volumes:
-      - /home/paulo/Documents/disco/pelis/completas:/peliculas
+      - /ruta/de/tus/peliculas:/peliculas
     ports:
       - 8200:8096
     environment:
