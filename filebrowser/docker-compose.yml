@@ -1,0 +1,13 @@
+version: '3'
+services:
+  filebrowser:
+    image: filebrowser/filebrowser
+    container_name: filebrowser
+    volumes:
+      - /home/paulo/docker/filebrowser:/etc/filebrowser/www
+      - /:/host_root   # Montar la carpeta raíz de la Raspberry Pi
+      - /home/paulo:/srv/home/paulo
+      - /home/paulo/dockers/filebrowser:/config
+    ports:
+      - 8081:80
+    restart: always
