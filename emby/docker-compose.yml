@@ -1,13 +1,18 @@
 version: "3"
+
 services:
-  emby:
-    image: emby/embyserver_arm64v8:latest
-    container_name: emby
+  emby:  # Definición del servicio llamado "emby"
+    image: emby/embyserver_arm64v8:latest  # Imagen de Docker a utilizar para el contenedor de Emby en arquitectura ARM64
+    container_name: emby  # Nombre asignado al contenedor
+
     volumes:
-      - /ruta/de/tus/peliculas:/peliculas
+      - /ruta/de/tus/peliculas:/peliculas  # Monta el directorio de películas del host en el directorio /peliculas del contenedor
+
     ports:
-      - 8200:8096
+      - 8200:8096  # Mapea el puerto 8200 del host al puerto 8096 del contenedor, utilizado por Emby
+
     environment:
-      - UID=1000
-      - GID=1000
-    restart: unless-stopped
+      - UID=1000  # ID de usuario para el contenedor, útil para permisos de archivos
+      - GID=1000  # ID de grupo para el contenedor, útil para permisos de archivos
+
+    restart: unless-stopped  # Política de reinicio para asegurar que el contenedor se reinicie automáticamente a menos que se detenga manualmente
