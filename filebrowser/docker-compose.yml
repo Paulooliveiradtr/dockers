@@ -1,13 +1,17 @@
 version: '3'
+
 services:
-  filebrowser:
-    image: filebrowser/filebrowser
-    container_name: filebrowser
+  filebrowser:  # Definición del servicio llamado "filebrowser"
+    image: filebrowser/filebrowser:latest  # Imagen de Docker a utilizar para el contenedor de FileBrowser
+    container_name: filebrowser  # Nombre del contenedor
+
     volumes:
-      - /home/paulo/docker/filebrowser:/etc/filebrowser/www
-      - /:/host_root   # Montar la carpeta raíz de la Raspberry Pi
-      - /home/paulo:/srv/home/paulo
-      
+      # La línea siguiente está comentada, descoméntala si necesitas acceso a la raíz del host
+      # - /:/host_root
+      - /home:/srv/home  # Monta el directorio /home del host en /srv/home dentro del contenedor
+
     ports:
-      - 8081:80
+      - 8081:80  # Mapea el puerto 8081 del host al puerto 80 del contenedor
+
     restart: always
+    # Esto garantiza que el servicio se reinicie automáticamente en caso de fallo o reinicio del sistema
