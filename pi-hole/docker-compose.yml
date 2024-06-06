@@ -1,18 +1,20 @@
-version: "3"
+version: '3'
 
 services:
   pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
+    container_name: pihole  # Nombre del contenedor
+    image: pihole/pihole:latest  # Imagen de Pi-hole desde Docker Hub
     ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "8080:80/tcp"
+      - "53:53/tcp"  # Puerto DNS TCP
+      - "53:53/udp"  # Puerto DNS UDP
+      - "8080:80/tcp"  # Puerto para la interfaz web, cambiado de 80 a 8080
     environment:
-      TZ: 'Europe/Madrid'
-      WEBPASSWORD: 'CONTRASEÑA'
+      TZ: 'Europe/Madrid'  # Zona horaria
+      WEBPASSWORD: 'CONTRASEÑA'  # Contraseña para la interfaz web de Pi-hole
     volumes:
-      - './etc-pihole:/etc/pihole'
+      - './etc-pihole:/etc/pihole'  # Volumen para persistir la configuración de Pi-hole
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'  # Volumen para persistir la configuración de dnsmasq
     cap_add:
-      - NET_ADMIN
+      - NET_ADMIN  # Capacidad adicional necesaria para la administración de red
     restart: unless-stopped
+# Política de reinicio para asegurar que el contenedor se reinicie automáticamente a menos que se detenga manualmente
